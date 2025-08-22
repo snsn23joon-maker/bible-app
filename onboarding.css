@@ -1,0 +1,159 @@
+/* 온보딩 컨테이너 */
+.onboarding-container {
+    background-color: #f0f8f0; /* 연한 초록색 배경 */
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* 온보딩 제목 */
+.onboarding-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 50px !important;
+    line-height: 1.8;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/* 사용 방법 카드 컨테이너 */
+.usage-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 50px;
+}
+
+/* 사용 방법 카드 */
+.usage-card {
+    background: white;
+    border: 1px solid #e0e8e0;
+    border-radius: 12px;
+    padding: 16px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.usage-card:hover {
+    border-color: #8fe7a9;
+    box-shadow: 0 2px 8px rgba(143, 231, 169, 0.15);
+}
+
+.usage-card.selected {
+    border-color: #8fe7a9;
+    background-color: #f8fffa;
+    box-shadow: 0 2px 8px rgba(143, 231, 169, 0.2);
+}
+
+/* 카드 아이콘 */
+.card-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.card-icon img {
+    width: 50px;
+    height: auto;
+    filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
+}
+
+.usage-card.selected .card-icon img {
+    filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
+}
+
+/* 카드 내용 */
+.card-content {
+    flex: 1;
+    text-align: left;
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 4px 0;
+    line-height: 1.3;
+    text-align: left;
+}
+
+.card-description {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    line-height: 1.4;
+    text-align: left;
+}
+
+/* NEXT 버튼 */
+.next-btn {
+    width: 100%;
+    height: 42px;
+    background-color: #8FE7A9;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.next-btn:hover:not(:disabled) {
+    background-color: #7dd699;
+}
+
+.next-btn:disabled {
+    background-color: #8FE7A9;
+    color: white;
+    cursor: not-allowed;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 480px) {
+    .onboarding-container {
+        padding: 16px;
+    }
+    
+    .onboarding-title {
+        font-size: 22px;
+        margin-bottom: 32px;
+    }
+    
+    .usage-card {
+        padding: 14px;
+        gap: 10px;
+    }
+    
+    .card-icon {
+        width: 56px;
+        height: 56px;
+    }
+    
+    .card-icon img {
+        width: 46px;
+        height: auto;
+    }
+    
+    .card-title {
+        font-size: 15px;
+    }
+    
+    .card-description {
+        font-size: 13px;
+    }
+}
