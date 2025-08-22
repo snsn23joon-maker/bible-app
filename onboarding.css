@@ -1,32 +1,48 @@
 /* 온보딩 컨테이너 */
 .onboarding-container {
     background-color: #f0f8f0; /* 연한 초록색 배경 */
-    min-height: 100vh;
+    height: 100vh; /* viewport 높이로 고정 */
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* 스크롤 방지 */
+    /* 모바일 브라우저 최적화 */
+    -webkit-overflow-scrolling: touch;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 100%;
 }
 
 /* 온보딩 제목 */
 .onboarding-title {
-    font-size: 24px;
+    font-size: clamp(20px, 4vw, 24px);
     font-weight: 600;
     color: #333;
     text-align: center;
-    margin-top: 10px;
-    margin-bottom: 50px !important;
-    line-height: 1.8;
+    margin-top: 60px; /* 뒤로가기 버튼 공간 확보 */
+    margin-bottom: clamp(20px, 4vh, 30px) !important;
+    line-height: 1.4;
     max-width: 300px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 5px;
     padding-right: 5px;
+    flex-shrink: 0;
 }
 
 /* 사용 방법 카드 컨테이너 */
 .usage-cards {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin-bottom: 50px;
+    gap: clamp(12px, 2vh, 16px);
+    margin-bottom: clamp(20px, 4vh, 30px);
+    flex: 1;
+    justify-content: center;
+    min-height: 0; /* flex 아이템 오버플로우 방지 */
 }
 
 /* 사용 방법 카드 */
@@ -34,14 +50,18 @@
     background: white;
     border: 1px solid #e0e8e0;
     border-radius: 12px;
-    padding: 16px;
-    height: 100px;
+    padding: clamp(12px, 2.5vw, 16px);
+    height: clamp(80px, 12vh, 100px);
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: clamp(8px, 2vw, 12px);
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    flex-shrink: 0;
+    /* 모바일 터치 최적화 */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .usage-card:hover {
@@ -57,8 +77,8 @@
 
 /* 카드 아이콘 */
 .card-icon {
-    width: 60px;
-    height: 60px;
+    width: clamp(50px, 12vw, 60px);
+    height: clamp(50px, 12vw, 60px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,7 +86,7 @@
 }
 
 .card-icon img {
-    width: 50px;
+    width: clamp(40px, 10vw, 50px);
     height: auto;
     filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
 }
@@ -79,10 +99,11 @@
 .card-content {
     flex: 1;
     text-align: left;
+    min-width: 0; /* 텍스트 오버플로우 방지 */
 }
 
 .card-title {
-    font-size: 16px;
+    font-size: clamp(14px, 3.5vw, 16px);
     font-weight: 600;
     color: #333;
     margin: 0 0 4px 0;
@@ -91,26 +112,35 @@
 }
 
 .card-description {
-    font-size: 14px;
+    font-size: clamp(12px, 3vw, 14px);
     color: #666;
     margin: 0;
-    line-height: 1.4;
+    line-height: 1.3;
     text-align: left;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 /* NEXT 버튼 */
 .next-btn {
     width: 100%;
-    height: 42px;
+    height: clamp(40px, 5vh, 42px);
     background-color: #8FE7A9;
     border: none;
     border-radius: 8px;
     color: white;
-    font-size: 14px;
+    font-size: clamp(13px, 3.5vw, 14px);
     font-weight: bold;
-    margin-top: 20px;
+    margin-top: clamp(15px, 3vh, 20px);
     cursor: pointer;
     transition: all 0.3s ease;
+    flex-shrink: 0;
+    margin-bottom: clamp(10px, 2vh, 20px);
+    /* 모바일 터치 최적화 */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .next-btn:hover:not(:disabled) {
@@ -126,34 +156,123 @@
 /* 반응형 디자인 */
 @media (max-width: 480px) {
     .onboarding-container {
-        padding: 16px;
+        padding: clamp(12px, 3vw, 16px);
     }
     
     .onboarding-title {
-        font-size: 22px;
-        margin-bottom: 32px;
+        margin-top: 50px;
+        margin-bottom: clamp(15px, 3vh, 25px) !important;
+    }
+    
+    .usage-cards {
+        gap: clamp(10px, 1.5vh, 14px);
+        margin-bottom: clamp(15px, 3vh, 25px);
     }
     
     .usage-card {
-        padding: 14px;
-        gap: 10px;
+        padding: clamp(10px, 2vw, 14px);
+        gap: clamp(6px, 1.5vw, 10px);
     }
     
     .card-icon {
-        width: 56px;
-        height: 56px;
+        width: clamp(45px, 10vw, 56px);
+        height: clamp(45px, 10vw, 56px);
     }
     
     .card-icon img {
-        width: 46px;
+        width: clamp(35px, 8vw, 46px);
         height: auto;
     }
     
     .card-title {
-        font-size: 15px;
+        font-size: clamp(13px, 3.2vw, 15px);
     }
     
     .card-description {
-        font-size: 13px;
+        font-size: clamp(11px, 2.8vw, 13px);
+    }
+    
+    .next-btn {
+        margin-bottom: clamp(5px, 1vh, 15px);
+    }
+}
+
+/* 매우 작은 화면 (iPhone SE 등) */
+@media (max-width: 375px) {
+    .onboarding-title {
+        font-size: 18px;
+        margin-top: 45px;
+        margin-bottom: 20px !important;
+    }
+    
+    .usage-cards {
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+    
+    .usage-card {
+        height: 75px;
+        padding: 10px;
+    }
+    
+    .card-icon {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .card-icon img {
+        width: 35px;
+    }
+    
+    .card-title {
+        font-size: 14px;
+    }
+    
+    .card-description {
+        font-size: 12px;
+        -webkit-line-clamp: 2;
+    }
+    
+    .next-btn {
+        height: 40px;
+        margin-top: 15px;
+        margin-bottom: 10px;
+    }
+}
+
+/* 세로 화면이 매우 긴 경우 (iPhone 12 Pro Max 등) */
+@media (min-height: 800px) {
+    .onboarding-container {
+        justify-content: center;
+    }
+    
+    .onboarding-title {
+        margin-top: 70px;
+        margin-bottom: 40px !important;
+    }
+    
+    .usage-cards {
+        margin-bottom: 40px;
+    }
+    
+    .next-btn {
+        margin-bottom: 30px;
+    }
+}
+
+/* 모바일 브라우저 상태바 대응 */
+@supports (padding: max(0px)) {
+    .onboarding-container {
+        padding-top: max(20px, env(safe-area-inset-top));
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
+    }
+}
+
+/* iOS Safari 최적화 */
+@supports (-webkit-touch-callout: none) {
+    .onboarding-container {
+        height: -webkit-fill-available;
     }
 }
