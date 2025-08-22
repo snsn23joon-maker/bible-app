@@ -6,6 +6,10 @@
     <meta name="theme-color" content="#F0F8F0">
     <meta name="msapplication-navbutton-color" content="#F0F8F0">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="msapplication-TileColor" content="#F0F8F0">
+    <meta name="msapplication-tap-highlight" content="no">
     <title>Login Screen</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,6 +28,22 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            /* 모바일 브라우저 UI 색상 설정 */
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* 모바일 브라우저 상태바 색상 강제 설정 */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                background-color: #F0F8F0;
+            }
+        }
+
+        /* Android Chrome 상태바 색상 */
+        @media screen and (max-width: 768px) {
+            body {
+                background-color: #F0F8F0;
+            }
         }
 
         .container {
@@ -307,6 +327,19 @@
     <script>
         // DOM이 완전히 로드된 후 실행
         document.addEventListener('DOMContentLoaded', function() {
+            // 모바일 브라우저 상태바 색상 동적 설정
+            if ('theme-color' in document.querySelector('meta[name="theme-color"]')) {
+                document.querySelector('meta[name="theme-color"]').setAttribute('content', '#F0F8F0');
+            }
+            
+            // iOS Safari 상태바 스타일 설정
+            if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+                const meta = document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]');
+                if (meta) {
+                    meta.setAttribute('content', 'default');
+                }
+            }
+            
             const emailInput = document.querySelector('input[type="email"]');
             const passwordInput = document.querySelector('input[type="password"]');
             const signinBtn = document.querySelector('.signin-btn');
