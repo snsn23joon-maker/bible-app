@@ -39,7 +39,7 @@
     display: flex;
     flex-direction: column;
     gap: clamp(12px, 2vh, 16px);
-    margin-bottom: 0; /* NEXT 버튼과의 간격 제거 */
+    margin-bottom: clamp(20px, 4vh, 30px);
     flex: 1;
     justify-content: center;
     min-height: 0; /* flex 아이템 오버플로우 방지 */
@@ -137,17 +137,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     flex-shrink: 0;
-    /* 내비게이터 바로 위에 고정 */
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: 0;
-    border-radius: 0;
-    /* 안전 영역 고려 */
-    padding-bottom: env(safe-area-inset-bottom);
-    /* 내비게이터 높이만큼 여백 추가 */
-    margin-bottom: 0;
+    margin-bottom: clamp(10px, 2vh, 20px);
     /* 모바일 터치 최적화 */
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
@@ -167,7 +157,6 @@
 @media (max-width: 480px) {
     .onboarding-container {
         padding: clamp(12px, 3vw, 16px);
-        padding-bottom: 0; /* 하단 패딩 제거 */
     }
     
     .onboarding-title {
@@ -177,7 +166,7 @@
     
     .usage-cards {
         gap: clamp(10px, 1.5vh, 14px);
-        margin-bottom: 0;
+        margin-bottom: clamp(15px, 3vh, 25px);
     }
     
     .usage-card {
@@ -204,8 +193,7 @@
     }
     
     .next-btn {
-        margin-bottom: 0;
-        height: clamp(50px, 6vh, 60px); /* 내비게이터 높이 고려 */
+        margin-bottom: clamp(5px, 1vh, 15px);
     }
 }
 
@@ -219,7 +207,7 @@
     
     .usage-cards {
         gap: 10px;
-        margin-bottom: 0;
+        margin-bottom: 20px;
     }
     
     .usage-card {
@@ -246,16 +234,16 @@
     }
     
     .next-btn {
-        height: 50px;
+        height: 40px;
         margin-top: 15px;
-        margin-bottom: 0;
+        margin-bottom: 10px;
     }
 }
 
 /* 세로 화면이 매우 긴 경우 (iPhone 12 Pro Max 등) */
 @media (min-height: 800px) {
     .onboarding-container {
-        justify-content: flex-start; /* 상단부터 시작 */
+        justify-content: center;
     }
     
     .onboarding-title {
@@ -264,13 +252,11 @@
     }
     
     .usage-cards {
-        margin-bottom: 0;
-        justify-content: flex-start;
-        margin-top: 20px;
+        margin-bottom: 40px;
     }
     
     .next-btn {
-        margin-bottom: 0;
+        margin-bottom: 30px;
     }
 }
 
@@ -278,13 +264,9 @@
 @supports (padding: max(0px)) {
     .onboarding-container {
         padding-top: max(20px, env(safe-area-inset-top));
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
         padding-left: max(20px, env(safe-area-inset-left));
         padding-right: max(20px, env(safe-area-inset-right));
-        padding-bottom: 0; /* 하단 패딩 제거 */
-    }
-    
-    .next-btn {
-        padding-bottom: max(10px, env(safe-area-inset-bottom));
     }
 }
 
@@ -292,19 +274,5 @@
 @supports (-webkit-touch-callout: none) {
     .onboarding-container {
         height: -webkit-fill-available;
-    }
-    
-    .next-btn {
-        /* iOS 내비게이터 높이 고려 */
-        height: calc(50px + env(safe-area-inset-bottom));
-    }
-}
-
-/* Android Chrome 내비게이터 대응 */
-@media screen and (max-width: 768px) {
-    .next-btn {
-        /* Android 내비게이터 높이 고려 */
-        height: 60px;
-        padding-bottom: 10px;
     }
 }
