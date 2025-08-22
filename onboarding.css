@@ -15,6 +15,10 @@
     bottom: 0;
     width: 100%;
     max-width: 100%;
+    /* 모바일 브라우저 내비게이터 숨기기 */
+    height: 100vh;
+    height: -webkit-fill-available;
+    height: 100dvh; /* 동적 viewport 높이 */
 }
 
 /* 온보딩 제목 */
@@ -157,6 +161,10 @@
 @media (max-width: 480px) {
     .onboarding-container {
         padding: clamp(12px, 3vw, 16px);
+        /* 모바일에서 내비게이터 숨기기 */
+        height: 100vh;
+        height: -webkit-fill-available;
+        height: 100dvh;
     }
     
     .onboarding-title {
@@ -267,6 +275,9 @@
         padding-bottom: max(20px, env(safe-area-inset-bottom));
         padding-left: max(20px, env(safe-area-inset-left));
         padding-right: max(20px, env(safe-area-inset-right));
+        /* 동적 viewport 높이 사용 */
+        height: 100vh;
+        height: 100dvh;
     }
 }
 
@@ -274,5 +285,37 @@
 @supports (-webkit-touch-callout: none) {
     .onboarding-container {
         height: -webkit-fill-available;
+        height: 100dvh;
+    }
+}
+
+/* 모바일 브라우저 내비게이터 숨기기 */
+@media screen and (max-width: 768px) {
+    body {
+        /* 모바일에서 스크롤 방지 */
+        overflow: hidden;
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        height: -webkit-fill-available;
+        height: 100dvh;
+    }
+    
+    .onboarding-container {
+        /* 모바일에서 전체 화면 사용 */
+        height: 100vh;
+        height: -webkit-fill-available;
+        height: 100dvh;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+        min-height: 100dvh;
+    }
+}
+
+/* PWA 모드에서 내비게이터 숨기기 */
+@media (display-mode: standalone) {
+    .onboarding-container {
+        height: 100vh;
+        height: 100dvh;
     }
 }

@@ -2,7 +2,15 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#F0F8F0">
+    <meta name="msapplication-navbutton-color" content="#F0F8F0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="msapplication-TileColor" content="#F0F8F0">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="format-detection" content="telephone=no">
     <title>온보딩 - 성경 앱 사용 방법 선택</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,6 +71,72 @@
     </div>
 
     <script src="onboarding.js"></script>
+    <script>
+        // 모바일 브라우저에서 내비게이터 숨기기
+        document.addEventListener('DOMContentLoaded', function() {
+            // iOS Safari에서 주소창 숨기기
+            if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+                // 스크롤 시 주소창 숨기기
+                let lastScrollTop = 0;
+                window.addEventListener('scroll', function() {
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    if (scrollTop > lastScrollTop) {
+                        // 아래로 스크롤할 때
+                        document.body.style.height = '100vh';
+                    } else {
+                        // 위로 스크롤할 때
+                        document.body.style.height = '100vh';
+                    }
+                    lastScrollTop = scrollTop;
+                });
+                
+                // 터치 이벤트로 주소창 숨기기
+                document.addEventListener('touchstart', function() {
+                    setTimeout(function() {
+                        window.scrollTo(0, 1);
+                    }, 100);
+                });
+            }
+            
+            // Android Chrome에서 주소창 숨기기
+            if (navigator.userAgent.match(/Android/i)) {
+                // 페이지 로드 시 주소창 숨기기
+                setTimeout(function() {
+                    window.scrollTo(0, 1);
+                }, 100);
+                
+                // 터치 이벤트로 주소창 숨기기
+                document.addEventListener('touchstart', function() {
+                    setTimeout(function() {
+                        window.scrollTo(0, 1);
+                    }, 100);
+                });
+            }
+            
+            // 전체화면 모드 활성화 시도
+            if (document.documentElement.requestFullscreen) {
+                document.addEventListener('click', function() {
+                    document.documentElement.requestFullscreen().catch(function(err) {
+                        console.log('전체화면 모드 활성화 실패:', err);
+                    });
+                });
+            }
+        });
+        
+        // 화면 방향 변경 시 주소창 숨기기
+        window.addEventListener('orientationchange', function() {
+            setTimeout(function() {
+                window.scrollTo(0, 1);
+            }, 500);
+        });
+        
+        // 리사이즈 시 주소창 숨기기
+        window.addEventListener('resize', function() {
+            setTimeout(function() {
+                window.scrollTo(0, 1);
+            }, 100);
+        });
+    </script>
 </body>
 </html>
 
